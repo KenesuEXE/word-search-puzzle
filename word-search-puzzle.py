@@ -5,17 +5,18 @@ import string
 import time
 
 def print_grid(grid, word_list):
+    """Print grid to console"""
     print("\n")
 
     for row in grid:
         print(' '.join(row))
-
     print("\nYour words are:")
     for word in word_list:
         print(word)
 
 
 def reveal_answer(unfilled_grid):
+    """Print unfilled grid to console"""
     print("\n")
 
     for row in unfilled_grid:
@@ -23,6 +24,7 @@ def reveal_answer(unfilled_grid):
 
 
 def pick_words(word_count, word_maxlength):
+    """Pick random words"""
     from random_word import RandomWords
     r = RandomWords()
     word_list = [ word.upper().replace('-','').replace(' ','').replace("'",'').replace('.','') for word in \
@@ -31,6 +33,7 @@ def pick_words(word_count, word_maxlength):
 
 
 def create_puzzle(grid_size, word_list):
+    """Generate word search puzzle"""
 
     # Create grid of NxN size with underscores as blank
     grid = [ [ '_' for _ in range(grid_size) ] for _ in range(grid_size) ]
@@ -54,8 +57,7 @@ def create_puzzle(grid_size, word_list):
             # Check if loop is taking too long
             # Meaning, it cannot find any more space to fit the word
             if time.time() > timeout:
-                raise Exception("Program takes too long to find a fit. Try lowering word count or length.")
-
+                raise Exception("Program takes too long to find a fit. Try lowering word count/length or increasing grid size.")
 
             # Set orientation
             orientation = random.choice(orientations)
@@ -122,7 +124,7 @@ def create_puzzle(grid_size, word_list):
 
             is_placed = True  # Current word done. Go for next word
 
-    # Save unfilled grid to reveal answers
+    # Save unfilled grid for answer reveal
     unfilled_grid = copy.deepcopy(grid)
 
     # Fill grid blanks with random letters
@@ -142,9 +144,13 @@ def main():
     args = parser.parse_args()
 
     word_list = pick_words(args.word_count, args.word_maxlength)
+
     grid = create_puzzle(args.grid_size, word_list)
+
     print_grid(grid[0], word_list)
-    input("\nInput anything to reveal answers")
+
+    input("\nPress Enter to reveal answers ")
+
     reveal_answer(grid[1])
 
 
