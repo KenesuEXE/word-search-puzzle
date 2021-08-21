@@ -2,30 +2,26 @@
 ### by KenesuEXE
 
 A word search puzzle generator in Python   
-Part of KenesuEXE's WPC (Weekend Project Collection)   
-WPC #1 May 22-24, 2021
 
 ## Usage
 Run the `word_search_puzzle.py` script to generate a random word search puzzle.
+You can also input your own grid size, word count, and word maxlength by using `python word_search_puzzle.py -h`
 
-## Importing create_puzzle()
-You can choose your own words by importing the function create_puzzle(word_list, grid_size).   
-The function returns a tuple that contains the puzzle grid, and an unfilled grid (to reveal answer). 
-To print the grid, do:
+## Pick your own words
+You can choose your own words by using the `create_puzzle(grid_size, word_list)` function. 
+`grid_size` is an integer indicating the size of the puzzle grid and `word_list` is a list of your chosen words.
+The function returns a dictionary with two elements `filled_grid` and `revealed_grid`, both are nested lists.
+To print the grid to your console, do:
 ```
 for row in grid:
     print(' '.join(row))
 ```
 
-## Requirements
-When importing the create_puzzle() function, no additional libraries are required.   
-When using the script and the pick_random_words(), the module Random-Word is required.
-```
-pip install Random-Word
-```
 
 ## Images 
-(Yes, this too was made on an Android.)
 
-![Image 1](image1.png)
+Actual Generated Puzzle (see if you can find all)
+![Image 1](image1.jpg)
+
+Puzzle Answers Revealed
 ![Image 2](image2.png)
